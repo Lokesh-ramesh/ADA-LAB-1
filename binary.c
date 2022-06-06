@@ -1,44 +1,58 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
 #include<time.h>
-void main()
+#include<stdlib.h>
+int bin(int arr[], int l, int r, int x)
 {
-    int a[100];
-    time_t st,ed;
-    int ele,flag = 0;
-
-    for(int i = 0;i<100;i++)
+    for(int p = 0;p<10000000;p++);
+if (r >= l)
+{
+		int mid = l + (r - l)/2;
+		if (arr[mid] == x) return mid;
+		if (arr[mid] > x) return bin(arr, l, mid-1, x);
+		return bin(arr, mid+1, r, x);
+}
+return -1;
+}
+int main()
+{
+    int a[1000],ele,t;
+ for(int i = 0;i<1000;i++)
     {
-        a[i] = rand()%1000 + 1;
+        a[i] = rand()%100000 + 1;
     }
 
-    for(int k = 0;k<100;k++)
+    for(int p=0;p<1000;p++)
+    {
+        for(int q = 0;q<1001;q++)
+        {
+            if(a[q]>a[q+1])
+            {
+                t = a[q];
+                a[q] = a[q+1];
+                a[q+1] = t;
+            }
+        }
+    }
+    for(int k = 0;k<1000;k++)
     {
         printf("%d,",a[k]);
     }
-
-    printf("\n");
-    printf("ENTER ELEMENT TO SEARCH \n");
-    scanf("%d",&ele);
-    st = time(NULL);
-
-    for(int j = 0;j<100;j++)
+int n = sizeof(a)/ sizeof(a[0]);
+printf("\n ENTER ELEMENT TO SEARCH \n");
+scanf("%d",&ele);
+time_t st,ed;
+st = time(NULL);
+int result = bin(a, 0, n-1, ele);
+if(result == -1)
     {
-        for(int p = 0;p<10000000;p++);
-        if(a[j] == ele)
-        {
-            printf("\n ELEMENT FOUND");
-            flag = 1;
-            break;
-        }
+        printf("Element is not present in array");
     }
-
-    if(flag == 0)
+else
     {
-        printf("\n ELEMENT NOT FOUND");
+    printf("Element is present at index %d", result);
     }
     ed = time(NULL);
 
     printf("\n TIME TAKEN = %f", difftime(ed,st));
-    return 0;
+return 0;
 }
