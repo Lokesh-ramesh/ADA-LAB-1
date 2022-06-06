@@ -3,16 +3,16 @@
 #include<time.h>
 void main()
 {
-    int a[100];
+    int a[500];
     time_t st,ed;
     int ele,flag = 0;
 
-    for(int i = 0;i<100;i++)
+    for(int i = 0;i<500;i++)
     {
-        a[i] = rand()%1000 + 1;
+        a[i] = rand()%10000 + 1;
     }
 
-    for(int k = 0;k<100;k++)
+    for(int k = 0;k<500;k++)
     {
         printf("%d,",a[k]);
     }
@@ -22,8 +22,9 @@ void main()
     scanf("%d",&ele);
     st = time(NULL);
 
-    for(int j = 0;j<100;j++)
+    for(int j = 0;j<500;j++)
     {
+        for(int p = 0;p<10000000;p++);
         if(a[j] == ele)
         {
             printf("\n ELEMENT FOUND");
