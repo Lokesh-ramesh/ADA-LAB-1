@@ -46,6 +46,7 @@ void mergeSort(int arr[], int l, int r)
 if (l < r)
 {
 int m = l+(r-l)/2;
+for(int p=0;p<10000000;p++);
 mergeSort(arr, l, m);
 mergeSort(arr, m+1, r);
 merge(arr, l, m, r);
@@ -63,7 +64,7 @@ printf("\n");
 int main()
 {
 int n;
-time_t st,ed;
+clock_t st,ed;
     printf("ENTER SIZE OF = ");
     scanf("%d",&n);
     int arr[n];
@@ -74,10 +75,10 @@ time_t st,ed;
             printf("%4d", arr[j]);
         }
      printf("\n");
-     st = time(NULL);
+     st = clock();
 mergeSort(arr, 0, n - 1);
-ed = time(NULL);
-printf("\n TIME TAKEN = %f \n",difftime(ed,st));
+ed = clock();
+printf("\n %lf",((double)(ed-st))/CLOCKS_PER_SEC);
 printf("SORTED ARRAY IS\n");
 printArray(arr, n);
 return 0;
