@@ -1,41 +1,56 @@
-#include<conio.h>
+
 #include<stdio.h>
-int a[20][20],reach[20],n;
-void dfs(int v)
+#include<conio.h>
+int a[10][10],n,vis[10];
+int dfs(int);
+int main()
 {
-    int i;
-    reach[v]=1;
-    for(i=1; i<=n; i++)
-        if(a[v][i] && !reach[i])
-        {
-            printf("\n %d->%d",v,i);
-            dfs(i);
-        }
+ int i,j,src,ans;
+ for(j=1;j<=n;j++)
+ {
+  vis[j]=0;
+ }
+ printf("\nENTER NO OF NODES: ");
+ scanf("%d",&n);
+ printf("\nENTER ADJACENCY MATRIX:\n");
+ for(i=1;i<=n;i++)
+ {
+  for(j=1;j<=n;j++)
+  {
+   scanf("%d",&a[i][j]);
+  }
+ }
+ printf("\nENTER SOURCE NODE:");
+ scanf("%d",&src);
+ ans=dfs(src);
+ if(ans==1)
+ {
+  printf("\nGRAPH IS CONNECTED\n");
+ }
+ else
+ {
+  printf("\nGRAPH IS NOT CONNECTED\n");
+ }
 }
-void main()
+
+int dfs(int src)
 {
-    int i,j,count=0;
-    printf("\n Enter number of vertices:");
-    scanf("%d",&n);
-    for(i=1; i<=n; i++)
-    {
-        reach[i]=0;
-        for(j=1; j<=n; j++)
-            a[i][j]=0;
-    }
-    printf("\n Enter the adjacency matrix:\n");
-    for(i=1; i<=n; i++)
-        for(j=1; j<=n; j++)
-            scanf("%d",&a[i][j]);
-    dfs(1);
-    printf("\n");
-    for(i=1; i<=n; i++)
-    {
-        if(reach[i])
-            count++;
-    }
-    if(count==n)
-        printf("\n Graph is connected");
-    else
-        printf("\n Graph is not connected");
+ int j;
+ vis[src]=1;
+ for(j=1;j<=n;j++)
+ {
+  if(a[src][j]==1&&vis[j]!=1)
+  {
+   dfs(j);
+  }
+ }
+ for(j=1;j<=n;j++)
+ {
+  if(vis[j]!=1)
+  {
+   return 0;
+  }
+ }
+ return 1;
 }
+
