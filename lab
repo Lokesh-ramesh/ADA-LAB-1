@@ -1,0 +1,24 @@
+create database studentaccomodation;
+use studentaccomodation;
+create table student(sid int,fname varchar(20),lname varchar(20),street varchar(20),city varchar(20),postcode int,comments varchar(20),
+gender varchar(20),dob date,school varchar(20),needs varchar(20),email varchar(20),nationality varchar(20),slevel varchar(20),sstatus varchar(20),primary key(sid));
+create table mobile(sid int,mobile1 int,foreign key(sid)references student(sid));
+create table hall(sid int,hname varchar(20),addressh varchar(20),telephone int,managername varchar(20),primary key(hname),foreign key(sid)references student(sid));
+create table rooms(placeno int,roomno int,hname varchar(20),rrent int,primary key(placeno),foreign key(hname)references hall(hname));
+create table apartment(flatno int,nod int,primary key(flatno));
+create table dormitory(did int,dbedno int,flatno int,daddress varchar(20),primary key(did),foreign key(flatno)references apartment(flatno));
+create table bed(bedno int,did int,brent int,primary key(bedno),foreign key(did)references dormitory(did));
+create table invoice(invoiceno int,term int,due int,fname varchar(20),lname varchar(20),sid int,placeno int,roomno int,address varchar(20),pdate date,method varchar(20),
+ifirst date,ilast date, primary key(invoiceno), foreign key(placeno)references rooms(placeno), foreign key(sid)references student(sid));
+create table inspection(inspectorname varchar(20),isdate date,satisfaction varchar(20),iscomments varchar(20),hname varchar(20),did int,
+foreign key(hname)references hall(hname),foreign key(did)references dormitory(did));
+
+insert into student values(1078,"suraj","kumar","basavanagudi","bglr",560050,null,"male","2002-05-05","deeksha",null,"suraj@gamil","indian","UG","placed");
+insert into mobile values(1078,636345678);
+insert into hall values(1078,"hall1","tadipatri",70131504,"amar");
+insert into rooms values(100,1,"hall1",1500);
+insert into apartment values(1,10);
+insert into dormitory values(111,2,1,"anathapur");
+insert into bed values(010,111,500);
+insert into invoice values(1000,3,2000,"suraj","kumar",1078,100,1,"tadipatri","2022-09-09","debit","2022-07-09","2022-08-09");
+insert into inspection values("mramar","2022-08-15","cleanroom",null,"hall1",111);
