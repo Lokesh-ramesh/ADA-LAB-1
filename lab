@@ -34,3 +34,12 @@ add constraint sid foreign key(invoiceno) references student(sid) on delete casc
 desc invoice;
 
 select * from inspection where satisfaction = 'unsatisfied';
+
+
+select * from dormitory where did in (select did from inspection where satisfaction = 'unsatisfied');
+
+select (select rrent from rooms where sid = '1002')+(select brent from bed where sid = '1002') as rent_fee;
+
+update inspection set iscomments = 'not good' where inspectorname = 'steve';
+
+delete from invoice where invoiceno = (select sid from student where fname = 'john');
