@@ -22,3 +22,15 @@ insert into dormitory values(111,2,1,"anathapur");
 insert into bed values(010,111,500);
 insert into invoice values(1000,3,2000,"suraj","kumar",1078,100,1,"tadipatri","2022-09-09","debit","2022-07-09","2022-08-09");
 insert into inspection values("mramar","2022-08-15","cleanroom",null,"hall1",111);
+
+
+select managername,telephone from hall;
+
+alter table invoice 
+drop foreign key sid;
+
+alter table invoice
+add constraint sid foreign key(invoiceno) references student(sid) on delete cascade;
+desc invoice;
+
+select * from inspection where satisfaction = 'unsatisfied';
