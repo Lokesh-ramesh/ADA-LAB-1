@@ -70,7 +70,7 @@ void dijkstras()
         i = parent[i];
         printf("<-%d", i);
       } while (i != src);
-      printf("\n number of nodes along the path %d to %d = %d",src,j,count+1);
+      printf("\n number of nodes along the path %d to %d = %d", src, j, count + 1);
     }
   }
 }
